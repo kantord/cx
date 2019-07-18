@@ -1,0 +1,3 @@
+class UnknownCurrencyError(Exception):
+    pass
+
