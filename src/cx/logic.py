@@ -1,9 +1,5 @@
-from cx.exceptions import UnknownCurrencyError
 from cx.exceptions import MissingDataError
-
-VALID_CURRENCIES = {"EUR", "USD", "CZK", "PLN"}
-BASE_CURRENCY = "EUR"
-assert BASE_CURRENCY in VALID_CURRENCIES
+from cx.currency import validate_currency, BASE_CURRENCY
 
 
 def get_base_rate(db, date, to):
@@ -19,13 +15,6 @@ def get_base_rate(db, date, to):
             to, date.strftime("%Y-%m-%d")))
 
     return db[date][to]
-
-
-def validate_currency(currency):
-    "Verifies the validity of a currency"
-
-    if currency not in VALID_CURRENCIES:
-        raise UnknownCurrencyError('Currency "{}" is unknown'.format(currency))
 
 
 def get_arbitrary_rate(db, date, from_, to):

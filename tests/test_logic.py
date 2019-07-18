@@ -6,7 +6,6 @@ from unittest.mock import MagicMock
 from datetime import date
 from cx.logic import get_arbitrary_rate
 from cx.logic import get_base_rate
-from cx.logic import validate_currency
 from cx.exceptions import UnknownCurrencyError
 from cx.exceptions import MissingDataError
 
@@ -49,17 +48,6 @@ def test_get_base_rate_validate_currency(date_, currency, value):
         date(2018, 5, 11): {"PLN": 2},
     }
     assert get_base_rate(db, date=date_, to=currency) == value
-
-
-def test_validate_currency():
-    validate_currency("EUR")
-    validate_currency("USD")
-
-    with pytest.raises(UnknownCurrencyError, match='Currency "geci" is unknown'):
-        validate_currency("geci")
-
-    with pytest.raises(UnknownCurrencyError, match='Currency "kurva" is unknown'):
-        validate_currency("kurva")
 
 
 def test_get_arbitrary_rate_validate_source_currency():
