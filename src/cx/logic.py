@@ -22,6 +22,8 @@ def get_base_rate(db, date, to):
 
 
 def validate_currency(currency):
+    "Verifies the validity of a currency"
+
     if currency not in VALID_CURRENCIES:
         raise UnknownCurrencyError('Currency "{}" is unknown'.format(currency))
 
