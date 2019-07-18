@@ -1,3 +1,2 @@
 class UnknownCurrencyError(Exception):
     pass
-
