@@ -9,13 +9,17 @@ def get_base_rate(db, date, to):
     "Currency conversion the base currency and another currency on a given date"
 
 
+def validate_currency(currency):
+    if currency not in VALID_CURRENCIES:
+        raise UnknownCurrencyError('Currency "{}" is unknown'.format(currency))
+
+
 def get_arbitrary_rate(db, date, from_, to):
     "Currency conversion between any two currencies on a given date"
 
-    if from_ not in VALID_CURRENCIES:
-        raise UnknownCurrencyError('Currency "{}" is unknown'.format(from_))
-    if to not in VALID_CURRENCIES:
-        raise UnknownCurrencyError('Currency "{}" is unknown'.format(to))
+    validate_currency(from_)
+    validate_currency(to)
+
     if from_ == to:
         return 1.0
 
