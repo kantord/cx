@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from cx.logic import validate_currency
+from cx.currency import validate_currency
 from cx.exceptions import UnknownCurrencyError
 
 

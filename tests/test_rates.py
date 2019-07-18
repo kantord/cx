@@ -4,8 +4,8 @@ import pytest
 from unittest.mock import patch
 from unittest.mock import MagicMock
 from datetime import date
-from cx.logic import get_arbitrary_rate
-from cx.logic import get_base_rate
+from cx.rates import get_arbitrary_rate
+from cx.rates import get_base_rate
 from cx.exceptions import UnknownCurrencyError
 from cx.exceptions import MissingDataError
 
@@ -15,7 +15,7 @@ def test_get_base_rate_validate_currency():
     fake_currency = MagicMock()
 
     validate_currency_ = MagicMock()
-    with patch('cx.logic.validate_currency', new=validate_currency_):
+    with patch('cx.rates.validate_currency', new=validate_currency_):
         try:
             get_base_rate(db=db, date=date(
                 2018, 5, 11), to=fake_currency)
@@ -55,7 +55,7 @@ def test_get_arbitrary_rate_validate_source_currency():
     source_currency = MagicMock()
 
     validate_currency_ = MagicMock()
-    with patch('cx.logic.validate_currency', new=validate_currency_):
+    with patch('cx.rates.validate_currency', new=validate_currency_):
         try:
             get_arbitrary_rate(db=db, date=date(
                 2018, 5, 11), from_=source_currency, to="EUR")
@@ -70,7 +70,7 @@ def test_get_arbitrary_rate_validate_target_currency():
     target_currency = MagicMock()
 
     validate_currency_ = MagicMock()
-    with patch('cx.logic.validate_currency', new=validate_currency_):
+    with patch('cx.rates.validate_currency', new=validate_currency_):
         try:
             get_arbitrary_rate(db=db, date=date(
                 2018, 5, 11), to=target_currency, from_="EUR")
@@ -89,7 +89,7 @@ def test_get_arbitrary_rate_identical_currencies():
 def test_get_arbitrary_rate_converting_from_base_currency_correct_call():
     db = dict()
     get_base_rate_ = MagicMock()
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="EUR", to="USD")
     get_base_rate_.assert_called_with(db=db, date=date(2018, 5, 11), to="USD")
@@ -98,7 +98,7 @@ def test_get_arbitrary_rate_converting_from_base_currency_correct_call():
 def test_get_arbitrary_rate_converting_to_base_currency_correct_call():
     db = dict()
     get_base_rate_ = MagicMock()
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="USD", to="EUR")
     get_base_rate_.assert_called_with(db=db, date=date(2018, 5, 11), to="USD")
@@ -108,7 +108,7 @@ def test_get_arbitrary_rate_converting_from_base_currency_correct_value():
     db = dict()
     get_base_rate_ = MagicMock()
     get_base_rate_.return_value = MagicMock()
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         assert get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="EUR", to="USD") == get_base_rate_.return_value
 
@@ -117,7 +117,7 @@ def test_get_arbitrary_rate_converting_to_base_currency_correct_value():
     db = dict()
     get_base_rate_ = MagicMock()
     get_base_rate_.return_value = 5
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         assert get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="USD", to="EUR") == pytest.approx(1 / get_base_rate_.return_value)
 
@@ -125,7 +125,7 @@ def test_get_arbitrary_rate_converting_to_base_currency_correct_value():
 def test_get_arbitrary_rate_converting_arbitrary_currency_correct_call():
     db = dict()
     get_base_rate_ = MagicMock()
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="CZK", to="USD")
     get_base_rate_.assert_any_call(db=db, date=date(2018, 5, 11), to="USD")
@@ -137,6 +137,6 @@ def test_get_arbitrary_rate_converting_arbitrary_currency_correct_value(currency
     db = dict()
     get_base_rate_ = MagicMock()
     get_base_rate_.side_effect = lambda db, date, to: rate if to == currency else 2
-    with patch('cx.logic.get_base_rate', new=get_base_rate_):
+    with patch('cx.rates.get_base_rate', new=get_base_rate_):
         assert get_arbitrary_rate(db=db, date=date(
             2018, 5, 11), from_="USD", to=currency) == pytest.approx(rate / 2)
