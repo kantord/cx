@@ -2,12 +2,13 @@ from flask import Flask
 from flask_restful import Resource, Api
 from cx.rates import get_arbitrary_rate
 from cx.dates import parse_date
+from cx.pricedb import parse_line, build_db
 
 app = Flask(__name__)
 api = Api(app)
 
-db = {}
-
+with open('./price.db') as input_file:
+    db = build_db(map(parse_line, input_file))
 
 class HelloWorld(Resource):
     def get(self):

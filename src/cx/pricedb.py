@@ -4,7 +4,7 @@ from cx.dates import parse_date
 
 
 def parse_line(input_):
-    parts = input_.split(' ')
+    parts = input_.split('\n')[0].split(' ')
     raw_date = parts[1]
     raw_rate = parts[3]
     currency = parts[4]

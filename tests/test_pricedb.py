@@ -7,6 +7,7 @@ examples = (
     ("P 2016-04-08 EUR 120.89 JPY", datetime.date(2016, 4, 8), 120.89, "JPY"),
     ("P 2019-07-18 EUR 1.9558 BGN", datetime.date(2019, 7, 18), 1.9558, "BGN"),
     ("P 2017-11-08 EUR 25.586 CZK", datetime.date(2017, 11, 8), 25.586, "CZK"),
+    ("P 2017-11-08 EUR 25.586 CZK\n", datetime.date(2017, 11, 8), 25.586, "CZK"),
 )
 
 
@@ -34,3 +35,4 @@ def test_build_db_different_date():
         datetime.date(2019, 7, 18): {"USD": 1.1216},
         datetime.date(2016, 4, 8): {"JPY": 120.89}
     }
+
