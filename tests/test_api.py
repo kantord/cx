@@ -22,5 +22,5 @@ def test_rate_return_value(api, date_string, from_, to, value):
     }
 
     with patch('cx.api.db', new=fake_db):
-        result = api.get('/{}/{}/{}'.format(date_string, from_, to))
+        result = api.get('rate/{}/{}/{}'.format(date_string, from_, to))
     assert result.json == {"rate": value}

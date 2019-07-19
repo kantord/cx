@@ -20,7 +20,7 @@ class Rate(Resource):
 
 
 api.add_resource(HelloWorld, '/')
-api.add_resource(Rate, '/<string:date>/<string:from_>/<string:to>')
+api.add_resource(Rate, '/rate/<string:date>/<string:from_>/<string:to>')
 
 if __name__ == '__main__':
     app.run(debug=True)
