@@ -3,11 +3,6 @@ import datetime
 from unittest.mock import patch
 
 
-def test_hello_word(api):
-    value = api.get('/')
-    assert value.json["hello"] == "world"
-
-
 @pytest.mark.parametrize('date_string,from_,to,value', (("2018-04-03", "USD", "CZK", 1), ("2017-03-01", "CZK", "USD", 2)))
 def test_rate_return_value(api, date_string, from_, to, value):
     fake_db = {

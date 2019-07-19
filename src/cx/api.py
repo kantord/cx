@@ -10,17 +10,11 @@ api = Api(app)
 with open('./price.db') as input_file:
     db = build_db(map(parse_line, input_file))
 
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
-
-
 class Rate(Resource):
     def get(self, date, from_, to):
         return {"rate": get_arbitrary_rate(db, parse_date(date), from_, to)}
 
 
-api.add_resource(HelloWorld, '/')
 api.add_resource(Rate, '/rate/<string:date>/<string:from_>/<string:to>')
 
 if __name__ == '__main__':
