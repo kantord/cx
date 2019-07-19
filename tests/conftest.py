@@ -7,4 +7,11 @@
     https://pytest.org/latest/plugins.html
 """
 
-# import pytest
+import pytest
+
+from cx.api import app
+
+
+@pytest.fixture
+def api():
+    return app.test_client()

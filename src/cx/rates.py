@@ -1,4 +1,5 @@
 from cx.exceptions import MissingDataError
+from cx.dates import DATE_FORMAT
 from cx.currency import validate_currency, BASE_CURRENCY
 
 
@@ -8,11 +9,11 @@ def get_base_rate(db, date, to):
 
     if date not in db:
         raise MissingDataError(
-            "No data for date {}".format(date.strftime("%Y-%m-%d")))
+            "No data for date {}".format(date.strftime(DATE_FORMAT)))
 
     if to not in db[date]:
         raise MissingDataError("No data for currency \"{}\" on date {}".format(
-            to, date.strftime("%Y-%m-%d")))
+            to, date.strftime(DATE_FORMAT)))
 
     return db[date][to]
 
