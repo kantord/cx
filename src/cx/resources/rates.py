@@ -1,6 +1,10 @@
+from flask_restful import Resource
+from cx.dates import parse_date
+from cx.currency import BASE_CURRENCY
+from cx.db import db
 from cx.exceptions import MissingDataError
 from cx.dates import DATE_FORMAT
-from cx.currency import validate_currency, BASE_CURRENCY
+from cx.currency import validate_currency
 
 
 def get_base_rate(db, date, to):
@@ -34,3 +38,13 @@ def get_arbitrary_rate(db, date, from_, to):
         return 1 / get_base_rate(db=db, date=date, to=from_)
 
     return get_base_rate(db=db, date=date, to=to) / get_base_rate(db=db, date=date, to=from_)
+
+
+class SingleRate(Resource):
+    def get(self, date, from_, to):
+        return {"rate": get_arbitrary_rate(db, parse_date(date), from_, to)}
+
+
+class Day(Resource):
+    def get(self, date):
+        return {"base": BASE_CURRENCY, "rates": db[parse_date(date)]}

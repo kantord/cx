@@ -17,7 +17,7 @@ def test_rates_single_return_value(api, date_string, from_, to, value):
         },
     }
 
-    with patch('cx.api.db', new=fake_db):
+    with patch('cx.resources.rates.db', new=fake_db):
         result = api.get('rates/{}/{}/{}'.format(date_string, from_, to))
     assert result.json == {"rate": value}
 
@@ -41,7 +41,7 @@ def test_rates_singe_date_return_value(api, date_string, value):
         },
     }
 
-    with patch('cx.api.db', new=fake_db):
+    with patch('cx.resources.rates.db', new=fake_db):
         result = api.get('rates/{}'.format(date_string))
     assert result.json == {
         "base": BASE_CURRENCY,
