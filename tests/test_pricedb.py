@@ -1,6 +1,6 @@
 import pytest
 import datetime
-from cx.pricedb import parse_line, build_db
+from cx.common.pricedb import parse_line, build_db
 
 examples = (
     ("P 2019-07-18 EUR 1.1216 USD", datetime.date(2019, 7, 18), 1.1216, "USD"),

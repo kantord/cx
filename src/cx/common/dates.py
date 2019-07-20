@@ -1,6 +1,6 @@
 
 import datetime
-from cx.exceptions import InvalidDateError
+from cx.common.exceptions import InvalidDateError
 
 
 DATE_FORMAT = "%Y-%m-%d"

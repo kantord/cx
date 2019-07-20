@@ -1,7 +1,7 @@
 import pytest
 import datetime
-from cx.dates import parse_date
-from cx.exceptions import InvalidDateError
+from cx.common.dates import parse_date
+from cx.common.exceptions import InvalidDateError
 
 
 @pytest.mark.parametrize('message,input_', (('"asd" is not a valid date', "asd"), ('"42" is not a valid date', 42)))

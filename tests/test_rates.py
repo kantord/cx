@@ -6,8 +6,8 @@ from unittest.mock import MagicMock
 from datetime import date
 from cx.resources.rates import get_arbitrary_rate
 from cx.resources.rates import get_base_rate
-from cx.exceptions import UnknownCurrencyError
-from cx.exceptions import MissingDataError
+from cx.common.exceptions import UnknownCurrencyError
+from cx.common.exceptions import MissingDataError
 
 
 def test_get_base_rate_validate_currency():

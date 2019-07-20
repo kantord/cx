@@ -1,4 +1,4 @@
-from cx.exceptions import UnknownCurrencyError
+from cx.common.exceptions import UnknownCurrencyError
 
 VALID_CURRENCIES = {"EUR", "USD", "CZK", "PLN"}
 BASE_CURRENCY = "EUR"

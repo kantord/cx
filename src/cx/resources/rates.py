@@ -1,10 +1,10 @@
 from flask_restful import Resource
-from cx.dates import parse_date
-from cx.currency import BASE_CURRENCY
 from cx.db import db
-from cx.exceptions import MissingDataError
-from cx.dates import DATE_FORMAT
-from cx.currency import validate_currency
+from cx.common.dates import parse_date
+from cx.common.currency import BASE_CURRENCY
+from cx.common.exceptions import MissingDataError
+from cx.common.dates import DATE_FORMAT
+from cx.common.currency import validate_currency
 
 
 def get_base_rate(db, date, to):

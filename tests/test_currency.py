@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-from cx.currency import validate_currency
-from cx.exceptions import UnknownCurrencyError
+from cx.common.currency import validate_currency
+from cx.common.exceptions import UnknownCurrencyError
 
 
 def test_validate_currency():

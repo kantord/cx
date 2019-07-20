@@ -1,7 +1,7 @@
 import pytest
 import datetime
 from unittest.mock import patch
-from cx.currency import BASE_CURRENCY
+from cx.common.currency import BASE_CURRENCY
 
 
 @pytest.mark.parametrize('date_string,from_,to,value', (("2018-04-03", "USD", "CZK", 1), ("2017-03-01", "CZK", "USD", 2)))
