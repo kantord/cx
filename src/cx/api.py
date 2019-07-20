@@ -15,7 +15,7 @@ class Rate(Resource):
         return {"rate": get_arbitrary_rate(db, parse_date(date), from_, to)}
 
 
-api.add_resource(Rate, '/rate/<string:date>/<string:from_>/<string:to>')
+api.add_resource(Rate, '/rates/<string:date>/<string:from_>/<string:to>')
 
 if __name__ == '__main__':
     app.run(debug=True)
