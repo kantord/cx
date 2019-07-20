@@ -2,25 +2,30 @@
 cx
 ==
 
-This is the documentation of **cx**.
+This is the documentation of **cx** currency exchange API.
+
+Resources
+---------
+
+Rates
+^^^^^
+
+This resource contains information about the exchanges rates on a certain day between two currencies.
 
 .. note::
+        As exchange rates are not published on weekends and bank holidays, there is not data available for such dates
 
-    This is the main page of your project's `Sphinx`_ documentation.
-    It is formatted in `reStructuredText`_. Add additional pages
-    by creating rst-files in ``docs`` and adding them to the `toctree`_ below.
-    Use then `references`_ in order to link them from this page, e.g.
-    :ref:`authors` and :ref:`changes`.
+To fetch an exchange rate you have to make a GET request to the ``/rates`` endpoint. Example:
 
-    It is also possible to refer to the documentation of other Python packages
-    with the `Python domain syntax`_. By default you can reference the
-    documentation of `Sphinx`_, `Python`_, `NumPy`_, `SciPy`_, `matplotlib`_,
-    `Pandas`_, `Scikit-Learn`_. You can add more by extending the
-    ``intersphinx_mapping`` in your Sphinx's ``conf.py``.
+.. code:: bash
 
-    The pretty useful extension `autodoc`_ is activated by default and lets
-    you include documentation from docstrings. Docstrings can be written in
-    `Google style`_ (recommended!), `NumPy style`_ and `classical style`_.
+        curl http://127.0.0.1:5000/rates/2018-05-23/PLN/EUR
+
+will result in the following JSON reply:
+
+.. code:: json
+
+        { "rate": 0.23208317861121427 }
 
 
 Contents
@@ -29,9 +34,6 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   License <license>
-   Authors <authors>
-   Changelog <changelog>
    Module Reference <api/modules>
 
 
