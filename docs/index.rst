@@ -13,7 +13,7 @@ Rates
 This resource contains information about the exchanges rates on a certain day between two currencies.
 
 .. note::
-        As exchange rates are not published on weekends and bank holidays, there is not data available for such dates
+        As exchange rates are not published on weekends and bank holidays, there is no data available for such dates
 
 To fetch an exchange rate you have to make a GET request to the ``/rates`` endpoint. Example:
 
