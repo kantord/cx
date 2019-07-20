@@ -27,6 +27,27 @@ will result in the following JSON reply:
 
         { "rate": 0.23208317861121427 }
 
+If you want to get all exchange rates on a single day you can omit the source and target currency from the same GET request:
+
+.. code:: bash
+
+        curl http://127.0.0.1:5000/rates/2018-05-23
+
+you can except a response like this:
+
+.. code:: json
+
+        {
+            "base": "EUR",
+            "rates": {
+                "USD": 1.1708,
+                "CZK": 25.813,
+                "PLN": 4.3088
+            }
+        }
+
+
+
 
 Contents
 ========

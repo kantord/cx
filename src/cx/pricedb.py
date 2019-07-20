@@ -5,6 +5,8 @@ Utility functions for parsing ledger-cli pricedb files
 import datetime
 from collections import defaultdict
 from cx.dates import parse_date
+from cx.currency import validate_currency
+from cx.exceptions import UnknownCurrencyError
 
 
 def parse_line(input_):
@@ -25,6 +27,10 @@ def build_db(lines):
 
     for line in lines:
         date, rate, currency = line
-        results[date].update({currency: rate})
+        try:
+            validate_currency(currency)
+            results[date].update({currency: rate})
+        except UnknownCurrencyError:
+            pass
 
     return results
