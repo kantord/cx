@@ -33,4 +33,4 @@ def build_db(lines):
         except UnknownCurrencyError:
             pass
 
-    return results
+    return dict(results)

@@ -9,9 +9,9 @@
 
 import pytest
 
-from cx.api import app
-
 
 @pytest.fixture
-def api():
+def api(fs):
+    fs.create_file('./price.db', contents="")
+    from cx.api import app
     return app.test_client()

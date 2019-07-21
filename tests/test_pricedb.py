@@ -21,6 +21,11 @@ def test_build_db_empty_input():
     assert build_db([]) == dict()
 
 
+def test_shouldnt_have_default_value():
+    with pytest.raises(KeyError):
+        build_db([])[datetime.date(2019, 7, 18)]
+
+
 def test_build_db_single_input():
     assert build_db([examples[0][1:]]) == {
         datetime.date(2019, 7, 18): {"USD": 1.1216}}
