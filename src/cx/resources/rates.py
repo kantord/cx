@@ -15,11 +15,11 @@ def get_base_rate(db, date, to):
         raise MissingDataError(
             "No data for date {}".format(date.strftime(DATE_FORMAT)))
 
-    if to not in db[date]:
+    if to not in db.get(date):
         raise MissingDataError("No data for currency \"{}\" on date {}".format(
             to, date.strftime(DATE_FORMAT)))
 
-    return db[date][to]
+    return db.get(date)[to]
 
 
 def get_arbitrary_rate(db, date, from_, to):
@@ -47,4 +47,4 @@ class SingleRate(Resource):
 
 class Day(Resource):
     def get(self, date):
-        return {"base": BASE_CURRENCY, "rates": db[parse_date(date)]}
+        return {"base": BASE_CURRENCY, "rates": db.get(parse_date(date))}
