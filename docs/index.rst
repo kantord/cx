@@ -4,6 +4,16 @@ cx
 
 This is the documentation of **cx** currency exchange API.
 
+
+Setup & Run
+-----------
+
+.. code:: bash
+
+        sudo docker build . -t cx
+        sudo docker run -p 5000:5000 cx:latest
+
+
 Resources
 ---------
 

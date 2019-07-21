@@ -1,0 +1,1 @@
+0 * * * * /app/update_db.sh >/dev/null 2>&1

@@ -11,4 +11,4 @@ api.add_resource(rates.SingleRate,
 api.add_resource(rates.Day, '/rates/<string:date>')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
